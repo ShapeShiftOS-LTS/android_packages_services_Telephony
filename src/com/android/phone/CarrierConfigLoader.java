@@ -539,16 +539,16 @@ public class CarrierConfigLoader extends ICarrierConfigLoader.Stub {
                     SharedPreferences sharedPrefs =
                             PreferenceManager.getDefaultSharedPreferences(mContext);
                     final String lastFingerprint = sharedPrefs.getString(KEY_FINGERPRINT, null);
-                    if (!Build.VERSION.INCREMENTAL.equals(lastFingerprint)) {
+                    if (!Build.FINGERPRINT.equals(lastFingerprint)) {
                         logd(
                                 "Build fingerprint changed. old: "
                                         + lastFingerprint
                                         + " new: "
-                                        + Build.VERSION.INCREMENTAL);
+                                        + Build.FINGERPRINT);
                         clearCachedConfigForPackage(null);
                         sharedPrefs
                                 .edit()
-                                .putString(KEY_FINGERPRINT, Build.VERSION.INCREMENTAL)
+                                .putString(KEY_FINGERPRINT, Build.FINGERPRINT)
                                 .apply();
                     }
                     break;
